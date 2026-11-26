@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indonesia in Numbers — National Statistics</title>
+<meta name="description" content="Real, sourced statistics for Indonesia: population, economy, health, education, employment and provinces. Works offline, on desktop and phone.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <a class="brand" href="#/">Indonesia <span>in Numbers</span></a>
+      <p class="tagline">National statistics, sourced and dated — BPS · UN · World Bank</p>
+    </div>
+    <div class="header-tools">
+      <form class="search-form" id="search-form" role="search">
+        <label class="visually-hidden" for="site-search" style="position:absolute;left:-9999px">Search indicators</label>
+        <input id="site-search" type="search" name="q" placeholder="Search: poverty, GDP, schooling…" autocomplete="off">
+        <button type="submit">Search</button>
+      </form>
+      <button type="button" id="theme-toggle" aria-pressed="false">Dark mode</button>
+    </div>
+  </div>
+  <nav class="main-nav" aria-label="Sections">
+    <a class="nav-link" href="#/">Overview</a>
+    <a class="nav-link" href="#/demographics">Demographics</a>
+    <a class="nav-link" href="#/economy">Economy</a>
+    <a class="nav-link" href="#/health">Health</a>
+    <a class="nav-link" href="#/education">Education</a>
+    <a class="nav-link" href="#/employment">Employment</a>
+    <a class="nav-link" href="#/regions">Regions</a>
+    <a class="nav-link" href="#/trends">Trends</a>
+    <a class="nav-link" href="#/sources">Sources</a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer class="site-footer">
+  <p>Figures: Statistics Indonesia (BPS), United Nations World Population Prospects 2024, World Bank World Development Indicators. Every figure on this site names its source and year. <a href="#/sources">Full source list and methods →</a></p>
+  <p>An original site built from published statistics. No data is fetched from the network; all content is in this site's own files.</p>
+</footer>
+</body>
+</html>
