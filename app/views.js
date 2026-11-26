@@ -88,7 +88,7 @@ export function viewEconomy() {
   </div>
   <div class="two-col">
     <article class="card"><h2>GDP by sector, 2024 estimate</h2>
-      ${donutChart('GDP by sector of origin, 2024 estimate', ECONOMY.gdpBySector, CHART_COLORS)}
+      ${donutChart('GDP by sector of origin, 2024 estimate', ECONOMY.gdpBySector.map((s) => ({ label: s.sector, value: s.share })), CHART_COLORS)}
       ${sourceNote('CIA World Factbook 2024 estimates, sector shares of GDP. The 4.3% unallocated slice is shown separately, so the chart totals 100%.')}
     </article>
     <article class="card"><h2>GDP per person, Rp million</h2>
@@ -98,7 +98,7 @@ export function viewEconomy() {
   </div>
   <article class="card"><h2>Poverty and inequality</h2>
     <p class="big-stat">${POVERTY.national}% <span>poor in September 2024 — ${POVERTY.urban}% urban, ${POVERTY.rural}% rural. The poverty line was Rp${POVERTY.line.toLocaleString('en-US')} per person per month.</span></p>
-    <p>Gini ratio: <strong>${POVERTY.giniSep}</strong> in September 2024 (0.379 in March 2024). ${POVERTY.extremeNote}</p>
+    <p>Gini ratio: <strong>${POVERTY.giniSep}</strong> in September 2024 (0.379 in March 2024).</p>
     ${sourceNote('BPS, Poverty Profile from Susenas, January 2025.')}
   </article>
   </section>`;

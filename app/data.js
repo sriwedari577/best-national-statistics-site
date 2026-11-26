@@ -136,7 +136,6 @@ export const POVERTY = {
   line: 595242,
   giniSep: 0.381,
   giniMar: 0.379,
-  extremeNote: 'Extreme poverty was 0.83% in March 2024, down from 1.12% in March 2023 (BPS, via Ministry of Finance).',
 };
 
 // Every indicator in one searchable index: label, value, section, source + year.
