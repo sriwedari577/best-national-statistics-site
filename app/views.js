@@ -83,7 +83,7 @@ export function viewEconomy() {
   <div class="kpi-grid">
     <article class="kpi"><p class="kpi-label">GDP, nominal</p><p class="kpi-value">Rp22,139tn</p><p class="kpi-note">US$1,396bn · 2024</p><p class="kpi-src">BPS / World Bank</p></article>
     <article class="kpi"><p class="kpi-label">GDP per person</p><p class="kpi-value">Rp78.62m</p><p class="kpi-note">US$4,960 · 2024</p><p class="kpi-src">BPS, Feb 2025</p></article>
-    <article class="kpi"><p class="kpi-label">GDP, PPP</p><p class="kpi-value">US$4,677bn</p><p class="kpi-note">2024</p><p class="kpi-src">World Bank WDI</p></article>
+    <article class="kpi"><p class="kpi-label">GDP, PPP</p><p class="kpi-value">US$4,663bn</p><p class="kpi-note">2024</p><p class="kpi-src">World Bank WDI</p></article>
     <article class="kpi"><p class="kpi-label">Inflation, Dec yoy</p><p class="kpi-value">1.57%</p><p class="kpi-note">CPI 106.80 · Dec 2024</p><p class="kpi-src">BPS, Jan 2025</p></article>
   </div>
   <div class="two-col">
@@ -124,7 +124,7 @@ export function viewEducation() {
   <p class="lede">Almost every primary-age child is enrolled on time, but average schooling for adults is still below nine years — and the gap between provinces is wide.</p>
   <div class="kpi-grid">${EDUCATION.map((e) => `<article class="kpi"><p class="kpi-label">${e.label}</p><p class="kpi-value">${e.value}</p><p class="kpi-note">${e.detail}</p><p class="kpi-src">${e.source}</p></article>`).join('')}</div>
   <article class="card"><h2>Schooling is improving, slowly</h2>
-    ${lineChart('Mean and expected years of schooling, 2020 to 2024', ['2020', '2021', '2022', '2023', '2024'], [8.48, 8.54, 8.69, 8.77, 8.85], ' yrs', TEAL)}
+    ${lineChart('Mean years of schooling, 2020 to 2024', ['2020', '2021', '2022', '2023', '2024'], [8.48, 8.54, 8.69, 8.77, 8.85], ' yrs', TEAL)}
     ${sourceNote('BPS HDI release, November 2024: mean years of schooling (age 25+) 2020–2024. Expected years rose from 12.98 (2020) to 13.21 (2024).')}
     <p>Mean schooling in Jakarta was 11.31 years in 2024, while some provinces remained below 7.5 years — a gap of nearly four school years within one country.</p>
   </article>
@@ -252,7 +252,7 @@ export function viewSources() {
   <tr><td>BPS</td><td>Human Development Index release, 15 Nov 2024</td><td>HDI 75.02, schooling 8.85 / 13.21 years, life expectancy 74.15 (HDI method)</td></tr>
   <tr><td>BPS</td><td>Province estimates, mid-2024</td><td>Province populations and densities; Java 156.93m, Sumatra 61.52m</td></tr>
   <tr><td>United Nations</td><td>World Population Prospects 2024</td><td>Population 283.49m, age shares, median age, fertility, urban share, density, population trend</td></tr>
-  <tr><td>World Bank</td><td>World Development Indicators, 2024</td><td>GDP US$1,396bn, GDP PPP US$4,677bn, life expectancy 71.3, infant/under-5 mortality, maternal mortality, health spending</td></tr>
+  <tr><td>World Bank</td><td>World Development Indicators, 2024</td><td>GDP US$1,396bn, GDP PPP US$4,663bn, life expectancy 71.3, infant/under-5 mortality, maternal mortality, health spending</td></tr>
   <tr><td>CIA</td><td>World Factbook, 2024 estimates</td><td>GDP shares by sector of origin only, labelled as estimates</td></tr>
   </tbody></table></div>
   <article class="card"><h2>Methods &amp; limits</h2>

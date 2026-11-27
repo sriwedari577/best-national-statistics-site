@@ -70,7 +70,7 @@ export const ECONOMY = {
     { sector: 'Other / unallocated', share: 4.3 },
   ],
   gdpPerCapitaRp: [null, null, null, null, 74.96, 78.62],
-  exportsNote: 'GDP in purchasing-power-parity terms was US$4,677bn in 2024 (World Bank WDI).',
+  exportsNote: 'GDP in purchasing-power-parity terms was US$4,663bn in 2024 (World Bank WDI).',
 };
 
 export const HEALTH = [
