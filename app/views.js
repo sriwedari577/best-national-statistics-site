@@ -1,14 +1,14 @@
 // One render function per section. Every figure names its source and year
 // in the text next to it; nothing here is placeholder text.
 import { HEADLINE, TRENDS, DEMOGRAPHICS, ECONOMY, HEALTH, EDUCATION, EMPLOYMENT, PROVINCES, POVERTY, SOURCES, INDICATORS } from './data.js';
-import { verticalBarChart, lineChart, horizontalBarChart, donutChart, CHART_COLORS, TEAL } from './charts.js';
+import { verticalBarChart, lineChart, horizontalBarChart, donutChart, sparkline, CHART_COLORS, TEAL } from './charts.js';
 
 function sourceNote(text) {
   return `<p class="source-note">Source: ${text}</p>`;
 }
 
 function kpiCards() {
-  return `<div class="kpi-grid">${HEADLINE.map((h) => `<article class="kpi"><p class="kpi-label">${h.label}</p><p class="kpi-value">${h.value}</p><p class="kpi-note">${h.note}</p><p class="kpi-src">${h.source}</p></article>`).join('')}</div>`;
+  return `<div class="kpi-grid">${HEADLINE.map((h) => `<article class="kpi"><p class="kpi-label">${h.label}</p><p class="kpi-value">${h.value}</p><p class="kpi-note">${h.note}</p>${h.delta ? `<p><span class="kpi-delta">${h.delta}</span></p>` : ''}${h.spark ? sparkline(h.label + ' trend', h.spark, TEAL) : ''}<p class="kpi-src">${h.source}</p></article>`).join('')}</div>`;
 }
 
 export function viewOverview() {
@@ -16,7 +16,7 @@ export function viewOverview() {
   return `<section>
   <p class="eyebrow">Indonesia · National statistics · Figures checked November 2026</p>
   <h1>Indonesia in numbers</h1>
-  <p class="lede">One country, 283.5 million people, 38 provinces and more than 17,000 islands. Every figure below is real, dated and sourced — from Statistics Indonesia (BPS), the United Nations and the World Bank.</p>
+  <p class="lede">One country, 283.5 million people, 38 provinces and more than 17,000 islands. Every figure below is real, dated and sourced — from Statistics Indonesia (BPS), the United Nations and the World Bank. The latest releases show poverty down to 8.47% in March 2025 and unemployment down to 4.76% in February 2025, while the economy grew 5.03% in 2024.</p>
   ${kpiCards()}
   <div class="two-col">
     <article class="card"><h2>Growth held near 5% — except 2020</h2>
@@ -29,8 +29,8 @@ export function viewOverview() {
       <p><a href="#/regions">All 10 largest provinces →</a></p></article>
   </div>
   <article class="card"><h2>Poverty fell to its lowest recorded level</h2>
-    <p class="big-stat">8.57% <span>poor in September 2024 — 24.06 million people, down from 9.03% in March 2024. Urban poverty was 6.66%; rural poverty 11.34%. The poverty line was Rp595,242 per person per month.</span></p>
-    ${sourceNote('BPS, Poverty Profile from Susenas, January 2025. The Gini ratio was 0.381 in September 2024.')}
+    <p class="big-stat">8.47% <span>poor in March 2025 — 23.85 million people, down from 8.57% in September 2024. Urban poverty was 6.73%; rural poverty 11.03%. The poverty line was Rp609,160 per person per month.</span></p>
+    ${sourceNote('BPS, Poverty Profile from Susenas, July 2025. The Gini ratio was 0.375 in March 2025.')}
     <p><a href="#/economy">Economy, poverty and inequality →</a></p></article>
   <nav class="section-links" aria-label="All sections">
     <a href="#/demographics">Demographics</a><a href="#/economy">Economy</a><a href="#/health">Health</a><a href="#/education">Education</a><a href="#/employment">Employment</a><a href="#/regions">Regions</a><a href="#/trends">Trends</a><a href="#/sources">Sources &amp; methods</a>
@@ -97,9 +97,9 @@ export function viewEconomy() {
     </article>
   </div>
   <article class="card"><h2>Poverty and inequality</h2>
-    <p class="big-stat">${POVERTY.national}% <span>poor in September 2024 — ${POVERTY.urban}% urban, ${POVERTY.rural}% rural. The poverty line was Rp${POVERTY.line.toLocaleString('en-US')} per person per month.</span></p>
-    <p>Gini ratio: <strong>${POVERTY.giniSep}</strong> in September 2024 (0.379 in March 2024).</p>
-    ${sourceNote('BPS, Poverty Profile from Susenas, January 2025.')}
+    <p class="big-stat">${POVERTY.national}% <span>poor in March 2025 — ${POVERTY.urban}% urban, ${POVERTY.rural}% rural. The poverty line was Rp${POVERTY.line.toLocaleString('en-US')} per person per month.</span></p>
+    <p>Gini ratio: <strong>${POVERTY.giniMar}</strong> in March 2025 (${POVERTY.giniSep} in September 2024).</p>
+    ${sourceNote('BPS, Poverty Profile from Susenas, July 2025.')}
   </article>
   </section>`;
 }
@@ -247,8 +247,10 @@ export function viewSources() {
   <tr><td>BPS — Statistics Indonesia</td><td>Population Census 2020</td><td>2020 population: 270,203,917</td></tr>
   <tr><td>BPS</td><td>Economic Growth release, 5 Feb 2025</td><td>GDP Rp22,138.96tn, GDP per person Rp78.62m, growth 5.03% (2024); 2023 comparatives</td></tr>
   <tr><td>BPS</td><td>Consumer Price Index release, 2 Jan 2025</td><td>Inflation 1.57% yoy, Dec 2024; 2.61% Dec 2023; 5.51% Dec 2022</td></tr>
-  <tr><td>BPS</td><td>Labour Situation (Sakernas), 5 Nov 2024</td><td>Labour force, employment, unemployment 4.91%, wage Rp3.27m, sector shares, formal share</td></tr>
-  <tr><td>BPS</td><td>Poverty Profile (Susenas), 15 Jan 2025</td><td>Poverty 8.57% Sep 2024, 24.06m people, poverty line, urban/rural split, Gini 0.381, poverty trend</td></tr>
+  <tr><td>BPS</td><td>Labour Situation (Sakernas), 5 May 2025</td><td>Unemployment 4.76% Feb 2025, 7.28m unemployed, labour force 153.05m, employed 145.77m</td></tr>
+  <tr><td>BPS</td><td>Labour Situation (Sakernas), 5 Nov 2024</td><td>Labour force, employment, unemployment 4.91%, wage Rp3.27m, sector shares, formal share (Aug 2024 detail)</td></tr>
+  <tr><td>BPS</td><td>Poverty Profile (Susenas), 25 Jul 2025</td><td>Poverty 8.47% Mar 2025, 23.85m people, poverty line Rp609,160, urban/rural split, Gini 0.375</td></tr>
+  <tr><td>BPS</td><td>Poverty Profile (Susenas), 15 Jan 2025</td><td>Poverty 8.57% Sep 2024, 24.06m people, poverty line Rp595,242, urban/rural split, Gini 0.381, poverty trend</td></tr>
   <tr><td>BPS</td><td>Human Development Index release, 15 Nov 2024</td><td>HDI 75.02, schooling 8.85 / 13.21 years, life expectancy 74.15 (HDI method)</td></tr>
   <tr><td>BPS</td><td>Province estimates, mid-2024</td><td>Province populations and densities; Java 156.93m, Sumatra 61.52m</td></tr>
   <tr><td>United Nations</td><td>World Population Prospects 2024</td><td>Population 283.49m, age shares, median age, fertility, urban share, density, population trend</td></tr>

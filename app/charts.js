@@ -59,6 +59,20 @@ export function lineChart(title, labels, values, unit, color) {
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)}" class="chart"><path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round"/>${dots}${xlabels}</svg>`;
 }
 
+export function sparkline(title, values, color) {
+  const shown = values.filter((v) => v !== null);
+  if (shown.length < 2) return '';
+  const W = 120, H = 30, pad = 3;
+  const max = Math.max(...shown);
+  const min = Math.min(...shown);
+  const range = max - min || 1;
+  const x = (i) => pad + (i / (shown.length - 1)) * (W - 2 * pad);
+  const y = (v) => pad + ((max - v) / range) * (H - 2 * pad);
+  const d = shown.map((v, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  const dots = shown.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="2" fill="${color}"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)}" class="spark"><path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>${dots}</svg>`;
+}
+
 export function horizontalBarChart(title, rows, unit, color) {
   const W = 560, rowH = 34, padL = 190, padT = 8;
   const H = padT + rows.length * rowH + 8;

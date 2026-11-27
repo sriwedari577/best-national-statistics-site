@@ -35,6 +35,8 @@ h2 { font-size: 19px; margin: 0 0 8px; }
 .kpi-value { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; margin: 0; line-height: 1.1; }
 .kpi-note { margin: 4px 0 0; font-size: 13.5px; }
 .kpi-src { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+.kpi-delta { display: inline-block; margin: 6px 0 0; font-size: 12px; font-weight: 700; color: var(--teal); background: var(--soft); border-radius: 999px; padding: 2px 8px; }
+.spark { display: block; width: 120px; height: 30px; margin-top: 8px; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
 .two-col .card { margin-bottom: 0; }

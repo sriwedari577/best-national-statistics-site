@@ -9,23 +9,26 @@ export const SOURCES = {
   bpsGdp: 'BPS, Economic Growth release, Feb 2025',
   wbGdp: 'World Bank, World Development Indicators 2024',
   bpsCpi: 'BPS, Consumer Price Index release, Jan 2025',
-  bpsLab: 'BPS, Labour Situation (Sakernas), Nov 2024',
-  bpsPov: 'BPS, Poverty Profile (Susenas), Jan 2025',
+  bpsLab: 'BPS, Labour Situation (Sakernas), May 2025',
+  bpsPov: 'BPS, Poverty Profile (Susenas), Jul 2025',
   bpsHdi: 'BPS, Human Development Index release, Nov 2024',
   wbHealth: 'World Bank, World Development Indicators 2024',
   bpsProv: 'BPS province estimates, mid-2024',
-  bpsGini: 'BPS, Poverty Profile (Susenas), Jan 2025',
+  bpsGini: 'BPS, Poverty Profile (Susenas), Jul 2025',
 };
 
+// Delta chips compare each headline value with the labelled prior period;
+// sparklines draw the pre-existing TRENDS series already in this file —
+// no new series was added for rev3.
 export const HEADLINE = [
-  { label: 'Population', value: '283.5m', note: '2024 · 4th largest in the world', source: 'UN WPP 2024' },
+  { label: 'Population', value: '283.5m', note: '2024 · 4th largest in the world', source: 'UN WPP 2024', delta: '▲ 2.30m vs 2023', spark: [272.49, 274.81, 276.76, 278.83, 281.19, 283.49] },
   { label: 'GDP (nominal)', value: 'Rp22,139tn', note: 'US$1,396bn · 2024', source: 'BPS / World Bank' },
-  { label: 'GDP per person', value: 'Rp78.62m', note: 'US$4,960 · 2024', source: 'BPS, Feb 2025' },
-  { label: 'Economic growth', value: '5.03%', note: 'Real GDP growth · 2024', source: 'BPS, Feb 2025' },
-  { label: 'Inflation (Dec, yoy)', value: '1.57%', note: 'CPI 106.80 · Dec 2024', source: 'BPS, Jan 2025' },
-  { label: 'Unemployment', value: '4.91%', note: 'Aug 2024 · 7.47m people', source: 'BPS Sakernas' },
-  { label: 'Poverty rate', value: '8.57%', note: 'Sep 2024 · 24.06m people', source: 'BPS Susenas' },
-  { label: 'Human Development Index', value: '75.02', note: '2024 · up from 74.39 in 2023', source: 'BPS, Nov 2024' },
+  { label: 'GDP per person', value: 'Rp78.62m', note: 'US$4,960 · 2024', source: 'BPS, Feb 2025', delta: '▲ Rp3.66m vs 2023', spark: [74.96, 78.62] },
+  { label: 'Economic growth', value: '5.03%', note: 'Real GDP growth · 2024', source: 'BPS, Feb 2025', delta: '▼ 0.02 pts vs 2023', spark: [5.02, -2.07, 3.70, 5.31, 5.05, 5.03] },
+  { label: 'Inflation (Dec, yoy)', value: '1.57%', note: 'CPI 106.80 · Dec 2024', source: 'BPS, Jan 2025', delta: '▼ 1.04 pts vs Dec 2023', spark: [1.87, 5.51, 2.61, 1.57] },
+  { label: 'Unemployment', value: '4.76%', note: 'Feb 2025 · 7.28m people', source: 'BPS Sakernas', delta: '▼ 0.15 pts vs Aug 2024', spark: [6.49, 5.86, 5.32, 4.91] },
+  { label: 'Poverty rate', value: '8.47%', note: 'Mar 2025 · 23.85m people', source: 'BPS Susenas', delta: '▼ 0.10 pts vs Sep 2024', spark: [9.41, 9.78, 10.14, 9.54, 9.36, 9.03] },
+  { label: 'Human Development Index', value: '75.02', note: '2024 · up from 74.39 in 2023', source: 'BPS, Nov 2024', delta: '▲ 0.63 pts vs 2023', spark: [74.39, 75.02] },
 ];
 
 export const TRENDS = {
@@ -129,13 +132,17 @@ export const PROVINCES = [
   { name: 'Riau', capital: 'Pekanbaru', island: 'Sumatra', population: 6.7, density: 77 },
 ];
 
+// Gini Mar 2025 0.375: BPS, "Penghitungan dan Analisis Kemiskinan Makro
+// di Indonesia Tahun 2025" (Susenas Mar 2025) — 0.375, down 0.006 from
+// 0.381 Sep 2024; cross-checked: 0.363 Sep 2025 = 0.375 − 0.012 (BPS).
+// Do not revert to 0.381: that is the Sep 2024 value, kept as giniSep below.
 export const POVERTY = {
-  urban: 6.66,
-  rural: 11.34,
-  national: 8.57,
-  line: 595242,
+  urban: 6.73,
+  rural: 11.03,
+  national: 8.47,
+  line: 609160,
   giniSep: 0.381,
-  giniMar: 0.379,
+  giniMar: 0.375,
 };
 
 // Every indicator in one searchable index: label, value, section, source + year.
@@ -154,8 +161,8 @@ export const INDICATORS = [
   { label: 'Average monthly wage (employees)', value: 'Rp3.27 million', section: 'Employment', source: 'BPS Sakernas, Aug 2024' },
   { label: 'Formal employment share', value: '42.05%', section: 'Employment', source: 'BPS Sakernas, Aug 2024' },
   { label: 'Informal employment share', value: '57.95%', section: 'Employment', source: 'BPS Sakernas, Aug 2024' },
-  { label: 'Poverty line', value: 'Rp595,242 per person per month', section: 'Overview', source: 'BPS Susenas, Sep 2024' },
-  { label: 'Gini ratio', value: '0.381', section: 'Overview', source: 'BPS Susenas, Sep 2024' },
+  { label: 'Poverty line', value: 'Rp609,160 per person per month', section: 'Overview', source: 'BPS Susenas, Mar 2025' },
+  { label: 'Gini ratio', value: '0.375', section: 'Overview', source: 'BPS Susenas, Mar 2025' },
   { label: 'Provinces', value: '38 provinces', section: 'Regions', source: 'BPS, 2024' },
   { label: 'Java population share', value: '55.4% (156.93m)', section: 'Regions', source: 'BPS province estimates, mid-2024' },
 ];
